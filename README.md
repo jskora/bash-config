@@ -18,7 +18,7 @@ Installation
 
 Copy the desired files into user home, adding a leading period (".").
 
-  $ for f in bash* ; do cp -pi $f ~/.$f ; done                                                                                        
+  $ for f in bash* ; do cp -pi $f ~/.$(basename $f) ; done                                                                                        
 Reference
 ---------
  
