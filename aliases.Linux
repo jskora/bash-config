@@ -1,6 +1,0 @@
-echo "running .aliases.Linux"
-alias ls='ls -F --color=tty'
-alias ll='ls -lF --color=tty'
-alias la='ls -lAF --color=tty'
-alias lld='ls -lFd --color=tty'
-

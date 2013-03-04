@@ -1,6 +1,0 @@
-echo "running .aliases.Darwin"
-alias ls='ls -FG'
-alias ll='ls -lFG'
-alias la='ls -lAFG'
-alias lld='ls -lFGd'
-

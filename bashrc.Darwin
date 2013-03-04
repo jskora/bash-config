@@ -1,1 +1,16 @@
-echo "running .bashrc.Darwin"
+# bashrc.Darwin
+
+# from old aliases files
+#alias ls='ls -FG'
+#alias ll='ls -lFG'
+#alias la='ls -lAFG'
+#alias lld='ls -lFGd'
+
+export LS_OPTIONS='-G -F'
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
