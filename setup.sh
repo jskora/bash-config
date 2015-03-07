@@ -5,21 +5,22 @@
 
 safe_copy () {
     SRC=$1
-    DST=$2
-    if [ -f ~/$2 ]; then
-	cp -p ~/$2 ~/$2.orig
-	echo "backup made ~/$2 => ~/$2.orig"
+    DST=${HOME}/.$1
+    if [ -f ${DST} ]; then
+	cp -p ${DST} ${DST}.orig
+	echo "backup made ${DST} => ${DST}.orig"
     fi
-    cp $1 $2
+    cp ${SRC} ${DST}
+    echo "installed ${SRC} as new ${DST}"
 }
 
-safe_copy bash_profile ~/.bash_profile
-safe_copy bashrc ~/.bashrc
-safe_copy bashrc.Darwin ~/.bashrc.Darwin
-safe_copy bashrc.Linux ~/.bashrc.Linux
+safe_copy bash_profile
+safe_copy bashrc
+safe_copy bashrc.Darwin
+safe_copy bashrc.Linux
 
-safe_copy git-completion.sh ~/.git-completion.sh
-safe_copy git-prompt.sh ~/.git-prompt.sh
+safe_copy git-completion.sh
+safe_copy git-prompt.sh
 
 #--------------------------------------------------
 
