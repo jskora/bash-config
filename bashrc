@@ -61,7 +61,7 @@ fi
 for sfx in .${OS} .${HOST}; do
     if [ -f ~/.bashrc${sfx} ] ; then
         BASH_LOG "sourcing .bashrc${sfx}"
-        echo "sourcing .bashrc${sfx}"
+        #echo "sourcing .bashrc${sfx}"
         source ~/.bashrc${sfx}
     fi
 done
