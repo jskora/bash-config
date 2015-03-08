@@ -51,9 +51,15 @@ fi
 if [ -f ~/.git-prompt.sh ] ; then
   source ~/.git-prompt.sh
   export GIT_PS1_SHOWDIRTYSTATE=true
-  export PS1='\[\e[1;32m\]\u@\h \[\e[1;33m\]\w\[\e[0m\]$(__git_ps1 " (%s)")\n$ '
+  export PS1='\[\e]0;\u@\h\a\]\[\e[1;32m\]\u@\h \[\e[1;33m\]\w\[\e[0m\]$(__git_ps1 " (%s)")\n$ '
 else
-  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]  `date`\n$ '
+  export PS1='\[\e]0;\u@\h\a\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]  `date`\n$ '
+fi
+
+# python rc file
+#------------------------------------------------------------
+if [ -f ${HOME}/.pythonrc ]; then
+    export PYTHONSTARTUP=${HOME}/.pythonrc
 fi
 
 # source bashrc existing files for OS, and HOST
@@ -66,4 +72,27 @@ for sfx in .${OS} .${HOST}; do
     fi
 done
 
+# timestamp bash history entries
+#------------------------------------------------------------
+export HISTTIMEFORMAT="%c "
 
+# configure ssh-agent
+#------------------------------------------------------------
+SSH_ENV="$HOME/.ssh/environment"
+function start_agent {
+    #echo "Initializing new SSH agent..."
+    touch $SSH_ENV
+    chmod 600 "${SSH_ENV}"
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' >> "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    #/usr/bin/ssh-add
+}
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    kill -0 $SSH_AGENT_PID 2>/dev/null || {
+        start_agent
+    }
+else
+    start_agent
+fi
