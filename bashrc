@@ -128,6 +128,6 @@ SRC_HILITE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
 if [ -f "${SRC_HILITE}" ] ; then
     export LESSOPEN="| ${SRC_HILITE} %s"
     export LESS=' -R '
-}
+fi
 
 BASH_LOG "FINAL PATH was ${PATH}"
