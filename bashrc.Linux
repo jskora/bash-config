@@ -1,17 +1,11 @@
 # bashrc.Linux
 
-# from old aliases files
-#alias ls='ls -F --color=tty'
-#alias ll='ls -lF --color=tty'
-#alias la='ls -lAF --color=tty'
-#alias lld='ls -lFd --color=tty'
-
-export LS_OPTIONS='--color=auto -F'
 eval "`dircolors`"
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
-alias l='ls $LS_OPTIONS -lA'
+alias ls='ls -F --color=auto'
+alias ll='ls -l'
+alias l="ls -lA"
+alias ld="ls -lA"
 
-alias rm='rm -i'
+alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
