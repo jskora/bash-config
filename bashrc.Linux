@@ -9,3 +9,22 @@ alias ld="ls -lA"
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
+
+cdset() {
+    TDIR="$(/usr/bin/readlink ${*:-.})"
+    if [ "$TDIR" == "" ]; then 
+        pwd >~/.last_cwd
+    else
+        echo $TDIR >~/.last_cwd
+    fi
+}
+
+cdgo() {
+    TDIR=$(cat ~/.last_cwd 2>/dev/null)
+    if [ "$TDIR" == "" ]; then 
+        echo "no directory setting in ~/.last_cwd"
+    else
+        cd $TDIR
+    fi
+}
+
