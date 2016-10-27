@@ -17,12 +17,17 @@ safe_copy () {
 safe_copy bash_profile      ~/.bash_profile
 safe_copy bashrc            ~/.bashrc
 safe_copy bashrc.Darwin     ~/.bashrc.Darwin
-safe_copy bashrc.Linux      ~/.bashrc.Darwin
+safe_copy bashrc.Linux      ~/.bashrc.Linux
 
 safe_copy git-completion.sh ~/.git-completion.sh
 safe_copy git-prompt.sh     ~/.git-prompt.sh
 
 safe_copy bin/setjava.sh    ~/bin/setjava.sh
+
+mkdir -p ~/.config/htop
+safe_copy htoprc            ~/.config/htop/
+
+safe_copy pythonrc          ~/.pythonrc
 
 #--------------------------------------------------
 

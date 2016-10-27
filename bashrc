@@ -37,7 +37,10 @@ BASH_LOG "ORIGINAL PATH was ${PATH}"
 #------------------------------------------------------------
 OS=$(uname)
 HOST=$(hostname -s)
+# centos, ubuntu 14.04
 GREP=$(which grep)
+# ubuntu 15.04
+#GREP=$(which --skip-alias grep)
 BASH_LOG "${HOST} appears to be running ${OS}"
 case ${OS} in
 Darwin)
@@ -124,7 +127,10 @@ fi
 
 # configure source highlight
 #------------------------------------------------------------
-SRC_HILITE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
+# centos
+#SRC_HILITE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
+# ubuntu 14.04
+SRC_HILITE="/usr/bin/src-hilite-lesspipe.sh"
 if [ -f "${SRC_HILITE}" ] ; then
     export LESSOPEN="| ${SRC_HILITE} %s"
     export LESS=' -R '
