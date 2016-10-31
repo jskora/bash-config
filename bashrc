@@ -37,9 +37,9 @@ BASH_LOG "ORIGINAL PATH was ${PATH}"
 #------------------------------------------------------------
 OS=$(uname)
 HOST=$(hostname -s)
-# centos, ubuntu 14.04
+# ubuntu 14.04
 GREP=$(which grep)
-# ubuntu 15.04
+# ubuntu 15.04, centos
 #GREP=$(which --skip-alias grep)
 BASH_LOG "${HOST} appears to be running ${OS}"
 case ${OS} in
