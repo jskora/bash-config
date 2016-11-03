@@ -1,0 +1,8 @@
+[user]
+	name = <user>
+	email = <user@domain>
+[core]
+	longpaths = true
+	autocrlf = false
+[push]
+	default = simple

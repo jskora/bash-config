@@ -22,12 +22,15 @@ safe_copy bashrc.Linux      ~/.bashrc.Linux
 safe_copy git-completion.sh ~/.git-completion.sh
 safe_copy git-prompt.sh     ~/.git-prompt.sh
 
+mkdir -p ~/bin
 safe_copy bin/setjava.sh    ~/bin/setjava.sh
 
 mkdir -p ~/.config/htop
-safe_copy htoprc            ~/.config/htop/
+safe_copy htoprc            ~/.config/htop/htoprc
 
 safe_copy pythonrc          ~/.pythonrc
+
+safe_copy gitconfig         ~/.gitconfig
 
 #--------------------------------------------------
 
