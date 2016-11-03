@@ -10,6 +10,8 @@ JAVA7BASE=/opt/jdk1.7.0_80
 JAVA8BASE=/opt/jdk1.8.0_77
 JAVA9BASE=/opt/jdk-9
 
+MAVENBASE=/opt/apache-maven-3.3.9
+
 # Get JDK version parameter
 #------------------------------------------------------------
 TGTVER=NA
@@ -67,6 +69,11 @@ if [ "${TGTVER}" == "9" ]; then
     export JAVA_HOME=${JAVA9BASE}
     export PATH=$JAVA_HOME/bin:$NOJAVA_PATH
     export MAVEN_OPTS="-Xms1024m -Xmx3076m"
+fi
+
+export M2_HOME=${MAVENBASE}
+if ! echo ${PATH} | grep -q ${M2_HOME} ; then
+    export PATH=${M2_HOME}/bin:${PATH}
 fi
 
 # Notify user of what was done.
