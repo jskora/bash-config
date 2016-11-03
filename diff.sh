@@ -32,6 +32,8 @@ safe_diff pythonrc          ~/.pythonrc
 
 safe_diff gitconfig         ~/.gitconfig
 
+safe_diff tmux.conf         ~/.tmux.conf
+
 #--------------------------------------------------
 
 echo "$0 done"

@@ -32,6 +32,8 @@ safe_copy pythonrc          ~/.pythonrc
 
 safe_copy gitconfig         ~/.gitconfig
 
+safe_copy tmux.conf         ~/.tmux.conf
+
 #--------------------------------------------------
 
 echo "$0 done"
