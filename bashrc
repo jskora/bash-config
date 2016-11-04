@@ -37,10 +37,11 @@ BASH_LOG "ORIGINAL PATH was ${PATH}"
 #------------------------------------------------------------
 OS=$(uname)
 HOST=$(hostname -s)
-# ubuntu 14.04
-GREP=$(which grep)
-# ubuntu 15.04, centos
-#GREP=$(which --skip-alias grep)
+# attempt aliased 'which' and retry without on error
+GREP=$(which --skip-alias grep)
+if [ $? -ne 0 ]; then
+    GREP=$(which grep)
+fi
 BASH_LOG "${HOST} appears to be running ${OS}"
 case ${OS} in
 Darwin)

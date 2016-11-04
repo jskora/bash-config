@@ -11,7 +11,11 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 cdset() {
-    TDIR="$(/usr/bin/readlink ${*:-.})"
+    if [ -f /bin/readlink ]; then
+        TDIR="$(/bin/readlink ${*:-.})"
+    else 
+        TDIR="$(/usr/bin/readlink ${*:-.})"
+    fi
     if [ "$TDIR" == "" ]; then 
         pwd >~/.last_cwd
     else
