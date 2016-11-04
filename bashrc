@@ -38,9 +38,9 @@ BASH_LOG "ORIGINAL PATH was ${PATH}"
 OS=$(uname)
 HOST=$(hostname -s)
 # attempt aliased 'which' and retry without on error
-GREP=$(which --skip-alias grep)
+GREP=$(which --skip-alias grep 2>/dev/null)
 if [ $? -ne 0 ]; then
-    GREP=$(which grep)
+    GREP=$(which grep 2>/dev/null)
 fi
 BASH_LOG "${HOST} appears to be running ${OS}"
 case ${OS} in
