@@ -16,7 +16,7 @@ cdset() {
     else 
         TDIR="$(/usr/bin/readlink ${*:-.})"
     fi
-    if [ "$TDIR" == "" ]; then 
+    if [ "$TDIR" = "" ]; then 
         pwd >~/.last_cwd
     else
         echo $TDIR >~/.last_cwd
@@ -25,10 +25,24 @@ cdset() {
 
 cdgo() {
     TDIR=$(cat ~/.last_cwd 2>/dev/null)
-    if [ "$TDIR" == "" ]; then 
+    if [ "$TDIR" = "" ]; then 
         echo "no directory setting in ~/.last_cwd"
     else
         cd $TDIR
     fi
 }
+
+EDITOR=$(which --skip-alias vim)
+if [ $? -ne 0 ]; then
+    EDITOR=$(which vim)
+fi
+if [ "$EDITOR" = "" ]; then
+    EDITOR=$(which --skip-alias vi)
+    if [ $? -ne 0 ]; then
+        EDITOR=$(which vi)
+    fi
+fi
+if [ "$EDITOR" != "" ]; then
+    export EDITOR
+fi
 
