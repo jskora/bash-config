@@ -130,7 +130,7 @@ fi
 #------------------------------------------------------------
 if [ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]; then
     SRC_HILITE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
-else if [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
+elif [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
     SRC_HILITE="/usr/bin/src-hilite-lesspipe.sh"
 fi
 if [ -f "${SRC_HILITE}" ] ; then
