@@ -34,6 +34,8 @@ safe_copy gitconfig         ~/.gitconfig
 
 safe_copy tmux.conf         ~/.tmux.conf
 
+safe_copy vimrc             ~/.vimrc
+
 #--------------------------------------------------
 
 echo "$0 done"

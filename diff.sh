@@ -34,6 +34,8 @@ safe_diff gitconfig         ~/.gitconfig
 
 safe_diff tmux.conf         ~/.tmux.conf
 
+safe_diff vimrc             ~/.vimrc
+
 #--------------------------------------------------
 
 echo "$0 done"
