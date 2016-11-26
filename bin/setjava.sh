@@ -86,8 +86,8 @@ if [ "$SILENT" != "true" ]; then
     echo "Java path and Maven options"
     echo "---------------------------"
     echo "JAVA_HOME=$JAVA_HOME"
-    echo "PATH=$PATH" | grep -P --color=auto "(:|=)[^:]*/jdk[^:]*(:|$)"
-    echo "MAVEN_OPTS=${MAVEN_OPTS}" | grep -P --color=auto "(?<==).*$"
+    echo "PATH=$PATH" | grep --color=auto "[^:]*/jdk[^:]*"
+    echo "MAVEN_OPTS=${MAVEN_OPTS}" | grep --color=auto "=.*$"
 fi
 
 #------------------------------------------------------------
