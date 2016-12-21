@@ -24,9 +24,10 @@ Copy the desired files into user home, adding a leading period (".").
     if [ -f ~/.bashrc ] ; then
       cp -p ~/.bashrc ~/.bashrc.save.$(date +%Y%m%d-%H%M%S)
     fi
-    for f in bash* git* ; do 
+    for f in bash* git* ; do
       cp -pi $f ~/.$(basename $f)
     done
+
 Reference
 ---------
 
