@@ -148,6 +148,8 @@ if [ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]; then
     SRC_HILITE="/usr/share/source-highlight/src-hilite-lesspipe.sh"
 elif [ -f "/usr/bin/src-hilite-lesspipe.sh" ]; then
     SRC_HILITE="/usr/bin/src-hilite-lesspipe.sh"
+elif [ -f "/opt/local/bin/src-hilite-lesspipe.sh" ]; then
+    SRC_HILITE="/opt/local/bin/src-hilite-lesspipe.sh"
 fi
 if [ -f "${SRC_HILITE}" ] ; then
     export LESSOPEN="| ${SRC_HILITE} %s"

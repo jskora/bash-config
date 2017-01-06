@@ -15,19 +15,49 @@
 #  limitations under the License.
 #--------------------------------------------------------------------------------
 
-# from old aliases files
-#alias ls='ls -FG'
-#alias ll='ls -lFG'
-#alias la='ls -lAFG'
-#alias lld='ls -lFGd'
-
-export LS_OPTIONS='-G -F'
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
-alias l='ls $LS_OPTIONS -lA'
+alias ls='ls -FG'
+alias ll='ls -lFG'
+alias la='ls -lAFG'
+alias lld='ls -lFGd'
 
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+cdset() {
+    if [ -f /bin/readlink ]; then
+        TDIR="$(/bin/readlink ${*:-.})"
+    else
+        TDIR="$(/usr/bin/readlink ${*:-.})"
+    fi
+    if [ "$TDIR" = "" ]; then
+        pwd >~/.last_cwd
+    else
+        echo $TDIR >~/.last_cwd
+    fi
+}
+
+cdgo() {
+    TDIR=$(cat ~/.last_cwd 2>/dev/null)
+    if [ "$TDIR" = "" ]; then
+        echo "no directory setting in ~/.last_cwd"
+    else
+        cd $TDIR
+    fi
+}
+
+EDITOR=$(which --skip-alias vim 2>/dev/null)
+if [ $? -ne 0 ]; then
+    EDITOR=$(which vim 2>/dev/null)
+fi
+if [ "$EDITOR" = "" ]; then
+    EDITOR=$(which --skip-alias vi 2>/dev/null)
+    if [ $? -ne 0 ]; then
+        EDITOR=$(which vi 2> /dev/null)
+    fi
+fi
+if [ "$EDITOR" != "" ]; then
+    export EDITOR
+fi
 
 alias emacs="/Applications/MacPorts/EmacsMac.app/Contents/MacOS/Emacs"
