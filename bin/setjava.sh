@@ -3,32 +3,34 @@
 #------------------------------------------------------------
 # Switch between JDK versions
 #------------------------------------------------------------
-
-# Configure these based on local system.
+# Configuration scripts should be in user home directory.
 #------------------------------------------------------------
-JAVA7BASE=/opt/jdk1.7.0_80
-JAVA8BASE=/opt/jdk1.8.0_77
-JAVA9BASE=/opt/jdk-9
 
-MAVENBASE=/opt/apache-maven-3.3.9
-
-# Get JDK version parameter
+# Scan options and arguments
 #------------------------------------------------------------
-TGTVER=NA
+TGTSCR=NA
 SILENT=false
-while [ "$1" != "" ]; do
-    if [ "$1" == "s" ]; then
-        SILENT=true
-    elif [ "$1" = "7" -o "$1" = "8" -o "$1" = "9" ]; then 
-        TGTVER=$1
-    else
-        echo "--------------------------------------------------"
-        echo "Unknown argument $1, aborting"
-        echo "--------------------------------------------------"
-        exit 1
-    fi
-    shift 1
+while getopts sm: opt; do
+    case $opt in
+        s)
+            SILENT=true
+            ;;
+        *)
+            echo "Unexpected option '-$opt'"
+            exit 1
+            ;;
+    esac
 done
+shift "$((OPTIND-1))"
+ARG1=$1
+if [ -f ~/.java-${ARG1}.cfg ]; then
+    TGTSCR=~/.java-${ARG1}.cfg
+elif [ "${ARG1}" != "" ]; then
+    echo "--------------------------------------------------"
+    echo "Unknown argument ${ARG1}, aborting"
+    echo "--------------------------------------------------"
+    exit 1
+fi
 
 # Verify script was sourced if change Java version.
 #------------------------------------------------------------
@@ -37,7 +39,7 @@ SOURCED=no
 if [ "${BASH_SOURCE[0]}" != "$0" ]; then
     SOURCED=yes
 fi
-if [ "${TGTVER}" != "NA" -a "${SOURCED}" == "no" ]; then
+if [ "${TGTSCR}" != "NA" -a "${SOURCED}" == "no" ]; then
     if [ "$SILENT" != "true" ]; then
         echo "--------------------------------------------------"
         echo "This script must be sourced to work with either"
@@ -46,40 +48,18 @@ if [ "${TGTVER}" != "NA" -a "${SOURCED}" == "no" ]; then
         echo "    \$ . $(basename $0)"
         echo "--------------------------------------------------"
     fi
-    exit -1
+    exit 1
 fi
 
-# Create path with Java removed and build new paths based on
-# the requested Java version.
-#------------------------------------------------------------
-NOJAVA_PATH=$(echo $PATH | sed "s#\(:\|^\)[^:]*/jdk1.[78][^:]*\(:\|\$\)#:#g")
-if [ "${TGTVER}" == "7" ]; then
-    export JAVA_HOME=${JAVA7BASE}
-    export PATH=$JAVA_HOME/bin:$NOJAVA_PATH
-    export MAVEN_OPTS="-Xms1024m -Xmx3076m -XX:MaxPermSize=256m"
-fi
-
-if [ "${TGTVER}" == "8" ]; then
-    export JAVA_HOME=${JAVA8BASE}
-    export PATH=$JAVA_HOME/bin:$NOJAVA_PATH
-    export MAVEN_OPTS="-Xms1024m -Xmx3076m"
-fi
-
-if [ "${TGTVER}" == "9" ]; then
-    export JAVA_HOME=${JAVA9BASE}
-    export PATH=$JAVA_HOME/bin:$NOJAVA_PATH
-    export MAVEN_OPTS="-Xms1024m -Xmx3076m"
-fi
-
-export M2_HOME=${MAVENBASE}
-if ! echo ${PATH} | grep -q ${M2_HOME} ; then
-    export PATH=${M2_HOME}/bin:${PATH}
+if [ "${TGTSCR}" != "NA" ]; then
+    export NOJAVA_PATH=$(echo $PATH | sed "s#\(:\|^\)[^:]*/jdk1.[78][^:]*\(:\|\$\)#:#g")
+    source ${TGTSCR}
 fi
 
 # Notify user of what was done.
 #------------------------------------------------------------
 if [ "$SILENT" != "true" ]; then
-    if [ "${TGTVER}" != "NA" ]; then
+    if [ "${TGTSCR}" != "NA" ]; then
         echo "Java switched to ${JAVA_HOME}"
     fi
     
