@@ -66,6 +66,10 @@ Linux)
     # prefer OS X like prompt
     PS1='\h:\W \u\$ '    
     ;;
+NetBSD)
+    # prefer OS X like prompt
+    PS1='\h:\W \u\$ '    
+    ;;
 *)
     echo "*** Unknown OS, guessing at configuration ***"
     ;;
