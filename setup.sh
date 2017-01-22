@@ -32,6 +32,7 @@ safe_copy bash_profile      ~/.bash_profile
 safe_copy bashrc            ~/.bashrc
 safe_copy bashrc.Darwin     ~/.bashrc.Darwin
 safe_copy bashrc.Linux      ~/.bashrc.Linux
+safe_copy bashrc.NetBSD     ~/.bashrc.NetBSD
 
 safe_copy git-completion.sh ~/.git-completion.sh
 safe_copy git-prompt.sh     ~/.git-prompt.sh

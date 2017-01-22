@@ -21,7 +21,7 @@ alias ll='ls -l'
 alias l="ls -lA"
 alias ld="ls -lA"
 
-alias rm='rm -I'
+alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
