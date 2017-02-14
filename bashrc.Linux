@@ -27,6 +27,9 @@ alias mv='mv -i'
 
 alias grep="grep --color=auto"
 
+# For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
+alias less="less -FeX"
+
 # grep the rainbow
 #--------------------------------------------------------------------------------
 #   sl/cx    = selected / context line
