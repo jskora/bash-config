@@ -11,3 +11,5 @@
     tool = /usr/bin/vimdiff
 [difftool]
     prompt = false
+[alias]
+	diffns = diff --name-status
