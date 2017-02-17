@@ -36,6 +36,7 @@ safe_diff bashrc.Darwin         ~/.bashrc.Darwin
 safe_diff bashrc.Linux          ~/.bashrc.Linux
 safe_diff bashrc.NetBSD         ~/.bashrc.NetBSD
 
+safe_diff gitconfig             ~/.gitconfig
 safe_diff git-completion.sh     ~/.git-completion.sh
 safe_diff git-prompt.sh         ~/.git-prompt.sh
 
@@ -46,13 +47,8 @@ safe_diff java-8.cfg            ~/.java-8.cfg
 safe_diff java-JDK1.8.0_77.cfg  ~/.java-JDK1.8.0_77.cfg
 
 safe_diff htoprc                ~/.config/htop/htoprc
-
 safe_diff pythonrc              ~/.pythonrc
-
-safe_diff gitconfig             ~/.gitconfig
-
 safe_diff tmux.conf             ~/.tmux.conf
-
 safe_diff vimrc                 ~/.vimrc
 
 #--------------------------------------------------
