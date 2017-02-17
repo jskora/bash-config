@@ -3,10 +3,15 @@
 "------------------------------------------------------------
 " colors
 
-colorscheme elflord
+"colorscheme elflord
 "colorscheme badwolf
 "colorscheme solarized
+"colorscheme torte
+"colorscheme darkblue
+colorscheme industry
 "colorscheme molokai
+"colorscheme slate
+"set background=dark
 
 "------------------------------------------------------------
 " formatting
