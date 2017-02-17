@@ -16,9 +16,9 @@
 #--------------------------------------------------------------------------------
 
 alias ls='ls -FG'
-alias ll='ls -lFG'
-alias la='ls -lAFG'
-alias lld='ls -lFGd'
+alias ll='ls -l'
+alias l='ls -lA'
+alias ld='ls -lAd'
 
 alias rm='rm -i'
 alias cp='cp -i'

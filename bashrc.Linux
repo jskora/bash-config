@@ -19,7 +19,7 @@ eval "`dircolors`"
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
 alias l="ls -lA"
-alias ld="ls -lA"
+alias ld="ls -lAd"
 
 alias rm='rm -I'
 alias cp='cp -i'
