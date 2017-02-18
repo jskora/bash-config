@@ -24,6 +24,90 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias grep="grep --color=auto"
+
+# For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
+alias less="less -FeX"
+
+# grep the rainbow
+#--------------------------------------------------------------------------------
+#   sl/cx    = selected / context line
+#   mt/ms/mc = matching text in matching / selected / context line
+#   fn/ln/bn = filename / linenumber / byte offset
+#   01/04/05/07 = bold / underline / blink / inverse
+#   30-37,39    = forerground colors black, red, green, yellow, blue, lightred, lightblue, white, default
+#   40-47,49    = backrground colors
+#--------------------------------------------------------------------------------
+asciicolorchart() {
+  echo "normal"
+  echo -n "   fg "
+  for XG in $(seq 30 1 37); do
+    echo -en "\033[01;${XG}m${XG}\033[0m   "
+  done
+  echo
+  for BG in $(seq 40 1 47); do
+    echo -en "bg \033[01;$((${BG}-10))m${BG}\033[0m "
+    for FG in $(seq 30 1 37); do
+      echo -en "\033[${FG};${BG}mTest\033[0m "
+    done
+    echo
+  done
+  echo "bold"
+  echo -n "   fg "
+  for XG in $(seq 30 1 37); do
+    echo -en "\033[01;${XG}m${XG}\033[0m   "
+  done
+  echo
+  for BG in $(seq 40 1 47); do
+    echo -en "bg \033[01;$((${BG}-10))m${BG}\033[0m "
+    for FG in $(seq 30 1 37); do
+      echo -en "\033[01;${FG};${BG}mTest\033[0m "
+    done
+    echo
+  done
+  echo "underline"
+  echo -n "   fg "
+  for XG in $(seq 30 1 37); do
+    echo -en "\033[01;${XG}m${XG}\033[0m   "
+  done
+  echo
+  for BG in $(seq 40 1 47); do
+    echo -en "bg \033[01;$((${BG}-10))m${BG}\033[0m "
+    for FG in $(seq 30 1 37); do
+      echo -en "\033[04;${FG};${BG}mTest\033[0m "
+    done
+    echo
+  done
+  echo "inverse"
+  echo -n "   fg "
+  for XG in $(seq 30 1 37); do
+    echo -en "\033[01;${XG}m${XG}\033[0m   "
+  done
+  echo
+  for BG in $(seq 40 1 47); do
+    echo -en "bg \033[01;$((${BG}-10))m${BG}\033[0m "
+    for FG in $(seq 30 1 37); do
+      echo -en "\033[07;${FG};${BG}mTest\033[0m "
+    done
+    echo
+  done
+}
+#--------------------------------------------------------------------------------
+alias grep1="GREP_COLORS='ms=01;31' grep"
+alias grep2="GREP_COLORS='ms=01;32' grep"
+alias grep3="GREP_COLORS='ms=01;33' grep"
+alias grep4="GREP_COLORS='ms=01;34' grep"
+alias grep5="GREP_COLORS='ms=01;35' grep"
+alias grep6="GREP_COLORS='ms=01;36' grep"
+alias grep7="GREP_COLORS='ms=01;37' grep"
+alias grep1r="GREP_COLORS='ms=01;30;41' grep"
+alias grep2r="GREP_COLORS='ms=01;30;42' grep"
+alias grep3r="GREP_COLORS='ms=01;30;43' grep"
+alias grep4r="GREP_COLORS='ms=01;33;44' grep"
+alias grep5r="GREP_COLORS='ms=01;33;45' grep"
+alias grep6r="GREP_COLORS='ms=01;30;46' grep"
+alias grep7r="GREP_COLORS='ms=01;30;47' grep"
+
 cdset() {
     if [ -f /bin/readlink ]; then
         TDIR="$(/bin/readlink ${*:-.})"

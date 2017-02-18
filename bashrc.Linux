@@ -112,10 +112,10 @@ alias grep7r="GREP_COLORS='ms=01;30;47' grep"
 cdset() {
     if [ -f /bin/readlink ]; then
         TDIR="$(/bin/readlink ${*:-.})"
-    else 
+    else
         TDIR="$(/usr/bin/readlink ${*:-.})"
     fi
-    if [ "$TDIR" = "" ]; then 
+    if [ "$TDIR" = "" ]; then
         pwd >~/.last_cwd
     else
         echo $TDIR >~/.last_cwd
@@ -124,7 +124,7 @@ cdset() {
 
 cdgo() {
     TDIR=$(cat ~/.last_cwd 2>/dev/null)
-    if [ "$TDIR" = "" ]; then 
+    if [ "$TDIR" = "" ]; then
         echo "no directory setting in ~/.last_cwd"
     else
         cd $TDIR
