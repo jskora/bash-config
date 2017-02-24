@@ -16,18 +16,14 @@ The behaviors included here are:
 Installation
 ------------
 
-Copy the desired files into user home, adding a leading period (".").
+These files can be installed automatically with the setup.sh script.  It automatically backs up files that it is replacing.
 
-    if [ -f ~/.bash_profile ] ; then
-      cp -p ~/.bash_profile ~/.bash_profile.save.$(date +%Y%m%d-%H%M%S)
-    fi
-    if [ -f ~/.bashrc ] ; then
-      cp -p ~/.bashrc ~/.bashrc.save.$(date +%Y%m%d-%H%M%S)
-    fi
-    for f in bash* git* ; do
-      cp -pi $f ~/.$(basename $f)
-    done
+    $ ./setup.sh
 
+Differences between these files and the current system configuration can be found using the diff.sh script.
+
+    $ ./diff.sh
+    
 Reference
 ---------
 
