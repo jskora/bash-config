@@ -1,8 +1,9 @@
 bash-config
 ===========
 
-Unix/Linux environment configuration scripts for interactive and non-interactive shell startup.  Supports
-startup specific environment configurations varying by operating system and host.
+Unix/Linux environment configuration scripts for interactive and non-interactive shell startup varying by operating system and host.
+
+Configurations are included for Bash, Git, HTop, Java, Python, Tmux, and Vim.
 
 Installation
 ------------
