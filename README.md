@@ -22,20 +22,20 @@ Java Configuration
 Java configurations often vary by host and JDK version, so these are likely to never exactly match the base in this project.
 
 So to configure individual systems.
-# Create or update the java-JDK*.cfg scripts to reflect the local JDK location.
-# Modify the appropriate local copy of ~/.java-X.cfg to point the ~/.java-JDK*.cfg script.
+  1. Create or update the java-JDK*.cfg scripts to reflect the local JDK location.
+  1. Modify the appropriate local copy of ~/.java-X.cfg to point the ~/.java-JDK*.cfg script.
 
 Bash Startup Notes
 ------------------
 
 The bash startup sequence on login is:                                                 
   1. Execute /etc/profile                                                             
-  2. Execute the first file found of                                                  
+  1. Execute the first file found of                                                  
        ~/.bash_profile -or- ~/.bash_login -or- ~/.profile                             
 
 The behaviors included here are:
   1. bash_profile with run bash_rc
-  2. bash_rc will bash_rc.OS and bash_rc.HOSTNAME
+  1. bash_rc will bash_rc.OS and bash_rc.HOSTNAME
 
 Reference
 ---------
