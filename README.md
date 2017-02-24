@@ -16,6 +16,15 @@ Differences between these files and the current system configuration can be foun
 
     $ ./diff.sh
 
+Java Configuration
+------------------
+
+Java configurations often vary by host and JDK version, so these are likely to never exactly match the base in this project.
+
+So to configure individual systems.
+# Create or update the java-JDK*.cfg scripts to reflect the local JDK location.
+# Modify the appropriate local copy of ~/.java-X.cfg to point the ~/.java-JDK*.cfg script.
+
 Bash Startup Notes
 ------------------
 
