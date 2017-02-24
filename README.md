@@ -1,17 +1,8 @@
 bash-config
 ===========
 
-Bash configuration scripts for interactive and non-interactive shell startup.  Supports
-startup operating system and host specific environments.
-
-The bash startup sequence on login is:                                                 
-  1. Execute /etc/profile                                                             
-  2. Execute the first file found of                                                  
-       ~/.bash_profile -or- ~/.bash_login -or- ~/.profile                             
-
-The behaviors included here are:
-  1. bash_profile with run bash_rc
-  2. bash_rc will bash_rc.OS and bash_rc.HOSTNAME
+Unix/Linux environment configuration scripts for interactive and non-interactive shell startup.  Supports
+startup specific environment configurations varying by operating system and host.
 
 Installation
 ------------
@@ -23,7 +14,19 @@ These files can be installed automatically with the setup.sh script.  It automat
 Differences between these files and the current system configuration can be found using the diff.sh script.
 
     $ ./diff.sh
-    
+
+Bash Startup Notes
+------------------
+
+The bash startup sequence on login is:                                                 
+  1. Execute /etc/profile                                                             
+  2. Execute the first file found of                                                  
+       ~/.bash_profile -or- ~/.bash_login -or- ~/.profile                             
+
+The behaviors included here are:
+  1. bash_profile with run bash_rc
+  2. bash_rc will bash_rc.OS and bash_rc.HOSTNAME
+
 Reference
 ---------
 
