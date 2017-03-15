@@ -10,7 +10,8 @@
 #------------------------------------------------------------
 TGTSCR=NA
 SILENT=false
-while getopts sm: opt; do
+OPTIND=1
+while getopts "s" opt; do
     case $opt in
         s)
             SILENT=true
