@@ -17,6 +17,11 @@
 #
 # Compare existing bash profile and RC files from this project.
 
+RED="$(tput setaf 1)"
+GREEN="$(tput setaf 2)"
+YELLOW="$(tput setaf 3)"
+RESET="$(tput sgr0)"
+
 safe_diff () {
     SRC=$1
     DST=$2
@@ -25,7 +30,7 @@ safe_diff () {
     if [ -f ${DST} ]; then
         diff ${SRC} ${DST}
     else
-        echo "does not exist: ${DST}"
+        echo "${RED}does not exist: ${DST}${RESET}"
     fi
     echo ""
 }
