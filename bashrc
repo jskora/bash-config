@@ -121,9 +121,14 @@ for sfx in .${OS} .${HOST}; do
     fi
 done
 
-# timestamp bash history entries
+# history
+#     - timestamp entries,
+#     - keep 2,000 commands (default is 500), and
+#     - ignore duplicates.
 #------------------------------------------------------------
 export HISTTIMEFORMAT="%c "
+export HISTSIZE=2000
+export HISTCONTROL=ignoredups
 
 # configure ssh-agent
 #------------------------------------------------------------
