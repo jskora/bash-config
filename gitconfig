@@ -13,5 +13,5 @@
     prompt = false
 [alias]
 	diffns = diff --name-status
-	tgree = log --oneline --decorate=full --all --graph
+	tree = log --oneline --decorate=full --all --graph
 	hist = log --pretty=format:\"%h %ad | %s%d [%an}\" --graph --date=short
