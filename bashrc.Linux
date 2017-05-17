@@ -1,6 +1,6 @@
 # bashrc.Linux
 #--------------------------------------------------------------------------------
-#  Copyright 2016 Joseph Skora
+#  Copyright 2017 Joseph Skora
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,24 +15,31 @@
 #  limitations under the License.
 #--------------------------------------------------------------------------------
 
+# ls with colors and file types 
 eval "`dircolors`"
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
 alias l="ls -lA"
 alias ld="ls -lAd"
 
+# sane file maninpulation
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
 
 alias grep="grep --color=auto"
 
-# For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
+# less with suppress clear screen, quit on 2nd eof, no pager if less than 1 screen
 alias less="less -FeX"
 
+# jdk versions (depends on external setjava.sh script and configs)
 alias j7='source setjava.sh 7'
 alias j8='source setjava.sh 8'
 alias j9='source setjava.sh 9'
+
+# bash history append and read
+alias ha='history -a'
+alias hr='history -r'
 
 # grep the rainbow
 #--------------------------------------------------------------------------------
