@@ -121,26 +121,50 @@ alias grep6r="GREP_COLORS='ms=01;30;46' grep"
 alias grep7r="GREP_COLORS='ms=01;30;47' grep"
 
 cdset() {
+    if [ $# -gt 1 ]; then
+        LBL="$1"
+        TGT="$2"
+    else
+        TGT="${*:-.}"
+        if [ -d $TGT ]; then
+            LBL=".default"
+        else
+            LBL="$TGT"
+            TGT="."
+        fi
+    fi
     if [ -f /bin/readlink ]; then
-        TDIR="$(/bin/readlink ${*:-.})"
+        TDIR="$(/bin/readlink -f ${TGT})"
     else
-        TDIR="$(/usr/bin/readlink ${*:-.})"
+        TDIR="$(/usr/bin/readlink -f ${TGT})"
     fi
-    if [ "$TDIR" = "" ]; then
-        pwd >~/.last_cwd
-    else
-        echo $TDIR >~/.last_cwd
-    fi
+    echo $TDIR >${HOME}/.cdgo-cwd.${LBL}
 }
 
 cdgo() {
-    TDIR=$(cat ~/.last_cwd 2>/dev/null)
+    if [ $# -gt 0 ]; then
+        LBL="${1:-}"
+        if [ -n "$LBL" ]; then
+            LBL="${LBL}"
+        fi
+    else
+        LBL="default"
+    fi
+    TDIR=$(cat ${HOME}/.cdgo-cwd.${LBL} 2>/dev/null)
     if [ "$TDIR" = "" ]; then
-        echo "no directory setting in ~/.last_cwd"
+        echo "no directory setting in ${HOME}/.cdgo-cwd.${LBL}"
     else
         cd $TDIR
     fi
 }
+
+_cdgo() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    CDGOWORDS=$(ls -d ${HOME}/.cdgo-cwd.* | sed 's#'$(readlink -f ${HOME})/.cdgo-cwd.'##')
+    COMPREPLY=( $( compgen -W "$CDGOWORDS" -- $cur ) )
+    return 0
+}
+complete -F _cdgo cdgo
 
 EDITOR=$(which --skip-alias vim 2>/dev/null)
 if [ $? -ne 0 ]; then
