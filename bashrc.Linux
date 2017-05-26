@@ -41,6 +41,9 @@ alias j9='source setjava.sh 9'
 alias ha='history -a'
 alias hr='history -r'
 
+# if on X, need this to run GUI app with sudo
+alias authsudo='xauth extract - $DISPLAY | sudo -i xauth merge -'
+
 # grep the rainbow
 #--------------------------------------------------------------------------------
 #   sl/cx    = selected / context line
