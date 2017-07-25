@@ -44,6 +44,9 @@ alias hr='history -r'
 # if on X, need this to run GUI app with sudo
 alias authsudo='xauth extract - $DISPLAY | sudo -i xauth merge -'
 
+# disable XON/XOFF (needed so Ctrl+R can be reversed with Ctrl+S)
+stty -ixon
+
 # grep the rainbow
 #--------------------------------------------------------------------------------
 #   sl/cx    = selected / context line
@@ -158,6 +161,23 @@ cdgo() {
         echo "no directory setting in ${HOME}/.cdgo-cwd.${LBL}"
     else
         cd $TDIR
+    fi
+}
+
+cdcheck() {
+    if [ $# -gt 0 ]; then
+        LBL="${1:-}"
+        if [ -n "$LBL" ]; then
+            LBL="${LBL}"
+        fi
+    else
+        LBL="default"
+    fi
+    TDIR=$(cat ${HOME}/.cdgo-cwd.${LBL} 2>/dev/null)
+    if [ "$TDIR" = "" ]; then
+        echo "no directory setting in ${HOME}/.cdgo-cwd.${LBL}"
+    else
+        echo "${LBL} = ${TDIR}"
     fi
 }
 
