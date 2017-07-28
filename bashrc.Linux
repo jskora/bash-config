@@ -44,8 +44,10 @@ alias hr='history -r'
 # if on X, need this to run GUI app with sudo
 alias authsudo='xauth extract - $DISPLAY | sudo -i xauth merge -'
 
-# disable XON/XOFF (needed so Ctrl+R can be reversed with Ctrl+S)
-stty -ixon
+# disable XON/XOFF in interactive shells (needed so Ctrl+R can be reversed with Ctrl+S)
+if [ -n "$SSH_TTY" ]; then
+    stty -ixon
+fi
 
 # grep the rainbow
 #--------------------------------------------------------------------------------
