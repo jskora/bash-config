@@ -17,22 +17,61 @@
 #
 # Compare existing bash profile and RC files from this project.
 
-RED="$(tput setaf 1)"
-GREEN="$(tput setaf 2)"
-YELLOW="$(tput setaf 3)"
-RESET="$(tput sgr0)"
+VERBOSE="false"
+COLORIZE="false"
+
+while getopts ":chv" opt; do
+    case $opt in
+        c)
+            COLORIZE="true"
+            ;;
+        v)
+            VERBOSE="true"
+            ;;
+        h)
+            echo "$0 - show differences between workspace and deployment locations."
+            echo "usage: $0 [-v] [-h]"
+            echo "   -c - color   - Highlight output with color."
+            echo "   -h - help    - Show this help message."
+            echo "   -v - verbose - Verbose output of matches and differences."
+            exit 0
+            ;;
+    esac
+done
+
+RED=""
+GREEN=""
+YELLOW=""
+RESET=""
+
+if [ "$COLORIZE" == "true" ]; then
+    RED="$(tput setaf 1; tput bold)"
+    GREEN="$(tput setaf 2; tput bold)"
+    YELLOW="$(tput setaf 3; tput bold)"
+    BLUE="$(tput setaf 4; tput bold)"
+    RESET="$(tput sgr0)"
+fi
 
 safe_diff () {
     SRC=$1
     DST=$2
-    echo "${DST}"
-    echo "----------------------------------------"
     if [ -f ${DST} ]; then
-        diff ${SRC} ${DST}
+        TMP=$(diff ${SRC} ${DST})
+        if [ -n "$TMP" ]; then
+            echo "----------------------------------------"
+            echo "${GREEN}${DST} ${YELLOW}MISMATCH${RESET}"
+            echo "----------------------------------------"
+            echo "${TMP}${RESET}"
+        else
+            if [ "$VERBOSE" == "true" ]; then
+                echo "----------------------------------------"
+                echo "${GREEN}$DST ${BLUE}OK${RESET}"
+            fi
+        fi
     else
-        echo "${RED}does not exist: ${DST}${RESET}"
+        echo "----------------------------------------"
+        echo "${RED}${DST} MISSING${RESET}"
     fi
-    echo ""
 }
 
 safe_diff bash_profile          ~/.bash_profile

@@ -166,3 +166,9 @@ if [ -f "${SRC_HILITE}" ] ; then
 fi
 
 BASH_LOG "FINAL PATH was ${PATH}"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+if [ -z "${SDKMAN_DIR}" ]; then   # prevent re-running sdkman init
+    export SDKMAN_DIR="${HOME}/.sdkman"
+    [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi

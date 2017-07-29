@@ -15,3 +15,5 @@
 	diffns = diff --name-status
 	tree = log --oneline --decorate=full --all --graph
 	hist = log --pretty=format:\"%h %ad | %s%d [%an}\" --graph --date=short
+[credential]
+	helper = cache
