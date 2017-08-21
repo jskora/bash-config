@@ -45,7 +45,7 @@ alias hr='history -r'
 alias authsudo='xauth extract - $DISPLAY | sudo -i xauth merge -'
 
 # disable XON/XOFF in interactive shells (needed so Ctrl+R can be reversed with Ctrl+S)
-if [[ $- == *i* ]]; then
+if [[ -n "$PS1" && $- == *i* ]]; then
     stty -ixon
 fi
 
