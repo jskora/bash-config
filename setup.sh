@@ -38,7 +38,11 @@ safe_copy git-completion.sh ~/.git-completion.sh
 safe_copy git-prompt.sh     ~/.git-prompt.sh
 
 mkdir -p ~/bin
+
 safe_copy bin/setjava.sh    ~/bin/setjava.sh
+safe_copy bin/bindputty.sh  ~/bin/bindputty.sh
+safe_copy bin/bindmate.sh   ~/bin/bindmate.sh
+
 safe_copy java-7.cfg            ~/.java-7.cfg
 safe_copy java-JDK1.7.0_80.cfg  ~/.java-JDK1.7.0_80.cfg
 safe_copy java-8.cfg            ~/.java-8.cfg

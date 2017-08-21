@@ -85,6 +85,9 @@ safe_diff git-completion.sh     ~/.git-completion.sh
 safe_diff git-prompt.sh         ~/.git-prompt.sh
 
 safe_diff bin/setjava.sh        ~/bin/setjava.sh
+safe_diff bin/bindputty.sh      ~/bin/bindputty.sh
+safe_diff bin/bindmate.sh       ~/bin/bindmate.sh
+
 safe_diff java-7.cfg            ~/.java-7.cfg
 safe_diff java-JDK1.7.0_80.cfg  ~/.java-JDK1.7.0_80.cfg
 safe_diff java-8.cfg            ~/.java-8.cfg
