@@ -33,6 +33,9 @@ alias j7='source setjava.sh 7'
 alias j8='source setjava.sh 8'
 alias j9='source setjava.sh 9'
 
+# Aliases for Brew
+alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
+
 # grep the rainbow
 #--------------------------------------------------------------------------------
 #   sl/cx    = selected / context line
