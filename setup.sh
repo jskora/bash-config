@@ -47,6 +47,7 @@ safe_copy java-7.cfg            ~/.java-7.cfg
 safe_copy java-JDK1.7.0_80.cfg  ~/.java-JDK1.7.0_80.cfg
 safe_copy java-8.cfg            ~/.java-8.cfg
 safe_copy java-JDK1.8.0_77.cfg  ~/.java-JDK1.8.0_77.cfg
+safe_copy java-JDK1.8.0_101.cfg ~/.java-JDK1.8.0_101.cfg
 
 mkdir -p ~/.config/htop
 safe_copy htoprc            ~/.config/htop/htoprc
@@ -58,6 +59,8 @@ safe_copy gitconfig         ~/.gitconfig
 safe_copy tmux.conf         ~/.tmux.conf
 
 safe_copy vimrc             ~/.vimrc
+
+safe_copy pre-commit        ./.git/hooks/pre-commit
 
 #--------------------------------------------------
 

@@ -92,11 +92,14 @@ safe_diff java-7.cfg            ~/.java-7.cfg
 safe_diff java-JDK1.7.0_80.cfg  ~/.java-JDK1.7.0_80.cfg
 safe_diff java-8.cfg            ~/.java-8.cfg
 safe_diff java-JDK1.8.0_77.cfg  ~/.java-JDK1.8.0_77.cfg
+safe_diff java-JDK1.8.0_101.cfg ~/.java-JDK1.8.0_101.cfg
 
 safe_diff htoprc                ~/.config/htop/htoprc
 safe_diff pythonrc              ~/.pythonrc
 safe_diff tmux.conf             ~/.tmux.conf
 safe_diff vimrc                 ~/.vimrc
+
+safe_diff pre-commit            ./.git/hooks/pre-commit
 
 #--------------------------------------------------
 
