@@ -124,11 +124,12 @@ done
 # history
 #     - timestamp entries,
 #     - keep 2,000 commands (default is 500), and
-#     - ignore duplicates.
+#     - ignore duplicates
+#     - ignore lines beginning with space (suppress history)
 #------------------------------------------------------------
 export HISTTIMEFORMAT="%c "
 export HISTSIZE=2000
-export HISTCONTROL=ignoredups
+export HISTCONTROL=ignoredups:ignorespace
 
 # configure ssh-agent
 #------------------------------------------------------------
