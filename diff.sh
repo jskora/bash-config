@@ -79,6 +79,7 @@ safe_diff bashrc                ~/.bashrc
 safe_diff bashrc.Darwin         ~/.bashrc.Darwin
 safe_diff bashrc.Linux          ~/.bashrc.Linux
 safe_diff bashrc.NetBSD         ~/.bashrc.NetBSD
+safe_diff bashrc.jpmbp          ~/.bashrc.jpmbp
 
 safe_diff gitconfig             ~/.gitconfig
 safe_diff git-completion.sh     ~/.git-completion.sh
