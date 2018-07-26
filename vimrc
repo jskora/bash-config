@@ -10,6 +10,7 @@
 "colorscheme darkblue
 colorscheme industry
 "colorscheme molokai
+"colorscheme pablo
 "colorscheme slate
 "set background=dark
 
