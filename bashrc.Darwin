@@ -25,6 +25,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias grep="grep --color=auto"
+alias tsize='echo "cols=$(tput cols) lines=$(tput lines)"'
 
 # For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
 alias less="less -FeX"
