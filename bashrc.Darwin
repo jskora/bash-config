@@ -26,9 +26,11 @@ alias mv='mv -i'
 
 alias grep="grep --color=auto"
 alias tsize='echo "cols=$(tput cols) lines=$(tput lines)"'
+alias thtop='tmux split-window -v -l 12 -b htop'
+alias timer='d=$(date +%s); while [[ true ]]; do e=$(date +%s); echo "start $(date -r $d)  now $(date -r $e)  elapsed $(($e - $d)) seconds"; sleep 1; done'
 
 # For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
-alias less="less -FeX"
+alias less="less -FReX"
 
 alias j7='source setjava.sh 7'
 alias j8='source setjava.sh 8'
