@@ -26,7 +26,7 @@ alias mv='mv -i'
 
 alias grep="grep --color=auto"
 alias tsize='echo "cols=$(tput cols) lines=$(tput lines)"'
-alias thtop='tmux split-window -v -l 12 -b htop'
+alias htop='if [[ "$TMUX" != "" ]]; then tmux split-window -v -l 12 -b htop; else htop; fi'
 alias timer='d=$(date +%s); while [[ true ]]; do e=$(date +%s); echo "start $(date -r $d)  now $(date -r $e)  elapsed $(($e - $d)) seconds"; sleep 1; done'
 
 # For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
