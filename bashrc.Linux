@@ -1,6 +1,6 @@
 # bashrc.Linux
 #--------------------------------------------------------------------------------
-#  Copyright 2017 Joseph Skora
+#  Copyright 2018 Joseph Skora
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@
 eval "`dircolors`"
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
-alias l="ls -lA"
-alias ld="ls -lAd"
+alias l='ls -lA'
+alias ld='ls -lAd'
 
-# sane file maninpulation
+# sane file manipulation
 alias rm='rm -I'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -32,8 +32,8 @@ alias tsize='echo "cols=$(tput cols) lines=$(tput lines)"'
 alias htop='if [[ "$TMUX" != "" ]]; then tmux split-window -v -l 12 -b htop; else htop; fi'
 alias timer='d=$(date +%s); while [[ true ]]; do e=$(date +%s); echo "start $(date -r $d)  now $(date -r $e)  elapsed $(($e - $d)) seconds"; sleep 1; done'
 
-# less with suppress clear screen, quit on 2nd eof, no pager if less than 1 screen
-alias less="less -FeX"
+# less with suppress clear screen, quit on 2nd eof, no pager if <1 screen, support raw chars (ESC...)
+alias less="less -FReX"
 
 # jdk versions (depends on external setjava.sh script and configs)
 alias j7='source setjava.sh 7'
@@ -208,3 +208,4 @@ if [ "$EDITOR" != "" ]; then
     export EDITOR
 fi
 
+# end

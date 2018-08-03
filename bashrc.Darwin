@@ -1,6 +1,6 @@
 # bashrc.Darwin
 #--------------------------------------------------------------------------------
-#  Copyright 2016 Joseph Skora
+#  Copyright 2018 Joseph Skora
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -15,11 +15,13 @@
 #  limitations under the License.
 #--------------------------------------------------------------------------------
 
+# ls with colors and file types 
 alias ls='ls -FG'
 alias ll='ls -l'
 alias l='ls -lA'
 alias ld='ls -lAd'
 
+# sane file manipulation
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -29,12 +31,25 @@ alias tsize='echo "cols=$(tput cols) lines=$(tput lines)"'
 alias htop='if [[ "$TMUX" != "" ]]; then tmux split-window -v -l 12 -b htop; else htop; fi'
 alias timer='d=$(date +%s); while [[ true ]]; do e=$(date +%s); echo "start $(date -r $d)  now $(date -r $e)  elapsed $(($e - $d)) seconds"; sleep 1; done'
 
-# For "less" suppress init clear screen, need to "q"uit, and pager if only 1 screen.
+# less with suppress clear screen, quit on 2nd eof, no pager if <1 screen, support raw chars (ESC...)
 alias less="less -FReX"
 
+# jdk versions (depends on external setjava.sh script and configs)
 alias j7='source setjava.sh 7'
 alias j8='source setjava.sh 8'
 alias j9='source setjava.sh 9'
+
+# bash history append and read
+alias ha='history -a'
+alias hr='history -r'
+
+# if on X, need this to run GUI app with sudo
+alias authsudo='xauth extract - $DISPLAY | sudo -i xauth merge -'
+
+# disable XON/XOFF in interactive shells (needed so Ctrl+R can be reversed with Ctrl+S)
+if [[ -n "$PS1" && $- == *i* ]]; then
+    stty -ixon
+fi
 
 # Aliases for Brew
 alias brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
@@ -118,27 +133,67 @@ alias grep5r="GREP_COLORS='ms=01;33;45' grep"
 alias grep6r="GREP_COLORS='ms=01;30;46' grep"
 alias grep7r="GREP_COLORS='ms=01;30;47' grep"
 
+# NOTE: The CD* commands require installation of the
+#       'coreutils' package with MacPorts or Brew.
+
 cdset() {
-    if [ -f /bin/readlink ]; then
-        TDIR="$(/bin/readlink ${*:-.})"
+    if [ $# -gt 1 ]; then
+        LBL="$1"
+        TGT="$2"
     else
-        TDIR="$(/usr/bin/readlink ${*:-.})"
+        TGT="${*:-.}"
+        if [ -d $TGT ]; then
+            LBL=".default"
+        else
+            LBL="$TGT"
+            TGT="."
+        fi
     fi
-    if [ "$TDIR" = "" ]; then
-        pwd >~/.last_cwd
-    else
-        echo $TDIR >~/.last_cwd
-    fi
+    TDIR="$(/opt/local/bin/greadlink -f ${TGT})"
+    echo $TDIR >${HOME}/.cdgo-cwd.${LBL}
 }
 
 cdgo() {
-    TDIR=$(cat ~/.last_cwd 2>/dev/null)
+    if [ $# -gt 0 ]; then
+        LBL="${1:-}"
+        if [ -n "$LBL" ]; then
+            LBL="${LBL}"
+        fi
+    else
+        LBL="default"
+    fi
+    TDIR=$(cat ${HOME}/.cdgo-cwd.${LBL} 2>/dev/null)
     if [ "$TDIR" = "" ]; then
-        echo "no directory setting in ~/.last_cwd"
+        echo "no directory setting in ${HOME}/.cdgo-cwd.${LBL}"
     else
         cd $TDIR
     fi
 }
+
+cdcheck() {
+    if [ $# -gt 0 ]; then
+        LBL="${1:-}"
+        if [ -n "$LBL" ]; then
+            LBL="${LBL}"
+        fi
+    else
+        LBL="default"
+    fi
+    TDIR=$(cat ${HOME}/.cdgo-cwd.${LBL} 2>/dev/null)
+    if [ "$TDIR" = "" ]; then
+        echo "no directory setting in ${HOME}/.cdgo-cwd.${LBL}"
+    else
+        echo "${LBL} = ${TDIR}"
+    fi
+}
+
+_cdgo() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    CDGOWORDS=$(ls -d ${HOME}/.cdgo-cwd.* | sed 's#'$(greadlink -f ${HOME})/.cdgo-cwd.'##')
+    COMPREPLY=( $( compgen -W "$CDGOWORDS" -- $cur ) )
+    return 0
+}
+complete -F _cdgo cdgo
 
 EDITOR=$(which --skip-alias vim 2>/dev/null)
 if [ $? -ne 0 ]; then
@@ -154,4 +209,4 @@ if [ "$EDITOR" != "" ]; then
     export EDITOR
 fi
 
-alias emacs="/Applications/MacPorts/EmacsMac.app/Contents/MacOS/Emacs"
+# end
