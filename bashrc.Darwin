@@ -133,6 +133,43 @@ alias grep5r="GREP_COLORS='ms=01;33;45' grep"
 alias grep6r="GREP_COLORS='ms=01;30;46' grep"
 alias grep7r="GREP_COLORS='ms=01;30;47' grep"
 
+#javamon='while [[ true ]]; do clear; date; ps -ef | grep java | sed "s/ -classpath [^ ]*//" | sed "s/ -cp [^ ]*//" | sed "s/ -X[^ ]*//g" | sed "s/ -D[^ ]*//g" | sed "s/ -9 %p//g" | sed "s/ --address localhost//g" | grep --color=always "/java [^ ]*" | grep -v grep; sleep 2; done'
+
+#javamon() {
+#    while [[ true ]]; do
+#        clear
+#        date
+#        ps -ef | \
+#            grep java | \
+#            sed "s/ -classpath [^ ]*//" | \
+#            sed "s/ -cp [^ ]*//" | \
+#            sed "s/ -X[^ ]*//g" | \
+#            sed "s/ -D[^ ]*//g" | \
+#            sed "s/ -9 %p//g" | \
+#            sed "s/ --address localhost//g" | \
+#            grep --color=always "/java (-server )? [^ ]*" | \
+#            grep -v grep
+#        sleep 2
+#    done
+#}
+
+javaprocs() {
+    ps -ef | \
+        grep java | \
+        sed -E "s/ (-classpath [^ ]*|-cp [^ ]*|-X[^ ]*|-D[^ ]*|-9 %p|--address localhost)|-verbose:[^ ]*|IDEA\..*\.jar)*//g" | \
+        egrep --color=always "/java (-[A-Za-z:0-9]+ )*[^ ]*" | \
+        grep -v grep
+}
+
+javamon() {
+    while [[ true ]]; do
+        clear
+        date
+        javaprocs
+        sleep 5
+    done
+}
+
 # NOTE: The CD* commands require installation of the
 #       'coreutils' package with MacPorts or Brew.
 
